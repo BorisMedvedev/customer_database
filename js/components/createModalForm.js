@@ -20,8 +20,9 @@ export const createModalForm = () => {
 
   overlay.classList.add('overlay');
   modalContent.classList.add('modal-content');
-  closeBtn.classList.add('btn-reset');
-  addContactBtn.classList.add('btn-reset');
+  closeBtn.classList.add('btn-reset', 'close-btn');
+  saveBtn.classList.add('btn-reset', 'save-btn', 'site-btn');
+  addContactBtn.classList.add('btn-reset', 'add-btn');
   saveBtn.classList.add('btn-reset');
   cancelBtn.classList.add('btn-reset');
   modalContactsBlock.classList.add('contacts-block');
@@ -30,11 +31,12 @@ export const createModalForm = () => {
   inputLastName.placeholder = 'Фамилия';
   inputSurName.placeholder = 'Отчество';
 
-  closeBtn.textContent = 'X';
   modalTitle.textContent = 'Новый клиент';
   saveBtn.textContent = 'Сохранить';
   cancelBtn.textContent = 'Отмена';
   addContactBtn.textContent = 'Добавить контакт';
+
+  cancelBtn.type = 'button';
 
   labelName.append(inputName);
   labelLastName.append(inputLastName);

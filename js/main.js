@@ -11,6 +11,7 @@ const init = () => {
   const addClientBtn = document.createElement('button');
 
   addClientBtn.textContent = 'Добавить клиента';
+  addClientBtn.className = 'add-client-btn';
 
   getMainSection.sectionContainer.append(getMainTable.mainTable, addClientBtn);
   getContainer.append(getHeader.header, getMainSection.main);
