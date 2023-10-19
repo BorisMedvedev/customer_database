@@ -1,0 +1,17 @@
+.section-table__title {
+  margin: 0;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+table thead th {
+  font-size: 14px;
+  font-weight: 400;
+  color: #b0b0b0 !important;
+}
+
+#table-id {
+  color: #9873FF !important;
+  text-transform: uppercase;
+}

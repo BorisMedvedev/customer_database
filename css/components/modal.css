@@ -1,0 +1,41 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.overlay form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.overlay form label{
+  width: 100%;
+
+}
+.overlay form input{
+  width: 100%;
+
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  max-width: 450px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.contacts-block {
+  padding: 10px;
+  background-color: rgba(200, 197, 209, 0.3);
+}

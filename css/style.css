@@ -1,11 +1,6 @@
 @import './bootstrap.min.css';
 @import './reset.css';
-@import './table.css';
-@import './header.css';
-@import './modal.css';
-@import './modal-form.css';
-@import './contact.css';
-@import './delete-modal.css';
-@import './loader.css';
-@import './loader-btn.css';
-@import './tooltip.css';
+@import './fonts.css';
+@import './components/header.css';
+@import './components/section.css';
+@import './components/modal.css';
