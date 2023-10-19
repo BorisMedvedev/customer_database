@@ -1,3 +1,5 @@
+import {addContactForm} from './addContactForm.js';
+
 export const createModalForm = () => {
   const overlay = document.createElement('div');
   const modalContent = document.createElement('div');
@@ -18,6 +20,18 @@ export const createModalForm = () => {
   const labelSurName = document.createElement('label');
   const inputSurName = document.createElement('input');
 
+  const labelNameSpan = document.createElement('span');
+  const labelLastNameSpan = document.createElement('span');
+  const labelSurNameSpan = document.createElement('span');
+
+  labelNameSpan.textContent = '*';
+  labelLastNameSpan.textContent = '*';
+  labelSurNameSpan.textContent = '*';
+
+  labelName.textContent = 'Имя';
+  labelLastName.textContent = 'Фамилия';
+  labelSurName.textContent = 'Отчество';
+
   overlay.classList.add('overlay');
   modalContent.classList.add('modal-content');
   closeBtn.classList.add('btn-reset', 'close-btn');
@@ -36,8 +50,14 @@ export const createModalForm = () => {
   cancelBtn.textContent = 'Отмена';
   addContactBtn.textContent = 'Добавить контакт';
 
-  cancelBtn.type = 'button';
+  labelNameSpan.style.color = '#9873ff';
+  labelLastNameSpan.style.color = '#9873ff';
+  labelSurNameSpan.style.color = '#9873ff';
 
+  cancelBtn.type = 'button';
+  labelName.append(labelNameSpan);
+  labelLastName.append(labelLastNameSpan);
+  labelSurName.append(labelSurNameSpan);
   labelName.append(inputName);
   labelLastName.append(inputLastName);
   labelSurName.append(inputSurName);
@@ -45,6 +65,18 @@ export const createModalForm = () => {
   modalContactsBlock.append(addContactBtn);
   modalContent.append(closeBtn, modalTitle, modalForm);
   overlay.append(modalContent);
+
+  document.addEventListener('click', (e) => {
+    if (e.target === closeBtn || e.target === overlay || e.target === cancelBtn) {
+      overlay.remove();
+    }
+  });
+
+  addContactBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const contact = addContactForm();
+    modalContactsBlock.prepend(contact);
+  });
 
   return {
     overlay,

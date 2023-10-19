@@ -9,6 +9,8 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
+  animation: modal-scale 0.5s forwards ease-in-out;
+  transform-origin: center center;
 }
 
 .overlay form {
@@ -78,47 +80,63 @@
   margin-bottom: 10px;
 }
 
-
 .add-btn {
   position: relative;
   font-size: 14px;
-font-style: normal;
-font-weight: 600;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .add-btn::before {
   position: absolute;
   top: 3px;
-  left: -20px;
-  content: '';
+  left: 125px;
+  content: "";
   display: block;
   width: 16px;
   height: 16px;
-  background-image: url('../../images/add_circle_outline.svg');
+  background-image: url("../../images/add_circle_outline.svg");
   background-size: cover;
 }
 
 .add-client-btn {
   position: relative;
   padding: 12px 26px 12px 58px;
-  border: 1px solid #9873FF;
+  border: 1px solid #9873ff;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   background-color: transparent;
   margin: 0 auto;
   display: block;
-
+  color: #9873ff;
 }
 .add-client-btn::before {
   position: absolute;
   top: 14px;
   left: 27px;
-  content: '';
+  content: "";
   display: block;
   width: 22px;
   height: 16px;
-  background-image: url('../../images/addclient.svg');
+  background-image: url("../../images/addclient.svg");
   background-size: cover;
+  transform: scale();
+}
 
+
+@keyframes modal-scale {
+  0% {
+    opacity: 0;
+
+  }
+
+  50% {
+    opacity: 0.5;
+
+  }
+  100% {
+    opacity: 1;
+
+  }
 }
