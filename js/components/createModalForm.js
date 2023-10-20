@@ -1,4 +1,5 @@
 import {addContactForm} from './addContactForm.js';
+import {createClient} from './apiClients.js';
 
 export const createModalForm = () => {
   const overlay = document.createElement('div');
@@ -96,7 +97,7 @@ export const createModalForm = () => {
         value: contactValues[i].value,
       });
     }
-
+    createClient(newContactTr, 'POST');
     console.log(newContactTr);
   });
 

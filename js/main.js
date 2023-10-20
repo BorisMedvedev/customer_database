@@ -3,7 +3,7 @@ import {createMain} from './components/createMain.js';
 import {createMainTable} from './components/createMainTable.js';
 import {createModalForm} from './components/createModalForm.js';
 
-const init = () => {
+const init = async () => {
   const getContainer = document.body;
   const getHeader = createHeader();
   const getMainSection = createMain('База данных');
