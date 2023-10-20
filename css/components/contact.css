@@ -1,4 +1,105 @@
 .contacts-block {
+  margin-bottom: 25px;
+  padding: 10px;
+  background-color: rgba(200, 197, 209, 0.2);
+  width: 450px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.contact {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  width: 390px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+}
+
+.contact__type {
+  width: 124px;
+  height: 37px;
+  position: relative;
+  border: 1px solid #c8c5d1;
+  background-color: #e7e5eb;
+}
+
+.contact__type-btn {
+  position: relative;
+  padding-right: 30px;
+  width: 123px;
+  height: 37px;
+}
+.contact__type-btn::after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  display: inline-block;
+  width: 13px;
+  height: 8px;
+  background-image: url(../../images/vector.svg);
+  background-size: cover;
+  right: 11px;
+  transition: transform 0.3s;
+}
+.contact__type-btn.active::after {
+  transform: rotate(-180deg);
+}
+
+.contact__list {
+  position: absolute;
+  top: 36px;
+  left: -1px;
+  background-color: #f4f3f6;
+  border: 1px solid #c8c5d1;
+  border-top: none;
+  z-index: 10;
+  width: 123px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+}
+.contact__list.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.contact__item {
+  padding: 7px;
+  padding-left: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.contact__item:hover {
+  background-color: #e7e5eb;
+}
+
+.contacts-block .contact__input {
+  margin: 0;
+  height: 37px;
+  border: 1px solid #c8c5d1;
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+}
+
+.contact__delete-btn {
+  width: 27px;
+  height: 37px;
+  flex-shrink: 0;
+  border: 1px solid #c8c5d1;
+  background-color: #e7e5eb;
+  background-image: url("../../images/cancel.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  transition:
+    background 0.3s,
+    border 0.3s;
+}
+.contact__delete-btn:hover {
+  border-color: #f06a4d;
+  background-image: url("../../images/cancel-hover.svg");
 }

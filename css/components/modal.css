@@ -45,14 +45,7 @@
   background-color: #fff;
 }
 
-.contacts-block {
-  margin-bottom: 25px;
-  padding: 10px;
-  background-color: rgba(200, 197, 209, 0.3);
-  width: 450px;
-  display: flex;
-  justify-content: center;
-}
+
 
 .close-btn {
   position: absolute;
@@ -85,6 +78,9 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
+}
+.add-btn.hidden {
+  display: none;
 }
 
 .add-btn::before {

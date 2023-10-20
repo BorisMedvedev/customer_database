@@ -10,16 +10,12 @@ export const createModalForm = () => {
   const addContactBtn = document.createElement('button');
   const saveBtn = document.createElement('button');
   const cancelBtn = document.createElement('button');
-
   const labelName = document.createElement('label');
   const inputName = document.createElement('input');
-
   const labelLastName = document.createElement('label');
   const inputLastName = document.createElement('input');
-
   const labelSurName = document.createElement('label');
   const inputSurName = document.createElement('input');
-
   const labelNameSpan = document.createElement('span');
   const labelLastNameSpan = document.createElement('span');
   const labelSurNameSpan = document.createElement('span');
@@ -76,6 +72,32 @@ export const createModalForm = () => {
     e.preventDefault();
     const contact = addContactForm();
     modalContactsBlock.prepend(contact);
+    const contacts = document.querySelectorAll('.contact');
+    if (contacts.length >= 10) {
+      addContactBtn.classList.add('hidden');
+    }
+  });
+
+  modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const contactTypes = document.querySelectorAll('.contact__type-btn');
+    const contactValues = document.querySelectorAll('.contact__input');
+    const newContactTr = {};
+    const contacts = [];
+
+    newContactTr.name = inputName.value.trim();
+    newContactTr.lastName = inputLastName.value.trim();
+    newContactTr.surname = inputSurName.value.trim();
+    newContactTr.contacts = contacts;
+
+    for (let i = 0; i < contactTypes.length; i++) {
+      contacts.push({
+        type: contactTypes[i].innerHTML,
+        value: contactValues[i].value,
+      });
+    }
+
+    console.log(newContactTr);
   });
 
   return {
