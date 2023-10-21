@@ -9,6 +9,7 @@ export const addContactForm = () => {
   const contactTypeListItemOther = document.createElement('li');
   const contactInput = document.createElement('input');
   const contactDeleteBtn = document.createElement('button');
+  const contactDeleteBtnTooltip = document.createElement('span');
 
   contact.className = 'contact';
   contactType.className = 'contact__type';
@@ -27,9 +28,13 @@ export const addContactForm = () => {
   contactTypeListItemEmail.textContent = 'Email';
   contactTypeListItemVk.textContent = 'Vk';
   contactTypeListItemOther.textContent = 'Другое';
+  contactDeleteBtnTooltip.textContent = 'Удалить контакт';
+  contactDeleteBtnTooltip.classList.add('delete-tooltip');
 
   contactTypeBtn.type = 'button';
   contactDeleteBtn.type = 'button';
+
+  contactDeleteBtn.append(contactDeleteBtnTooltip);
 
   contactTypeList.append(
       contactTypeListItemPhone,

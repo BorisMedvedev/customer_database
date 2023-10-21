@@ -11,15 +11,25 @@ export const createModalForm = () => {
   const addContactBtn = document.createElement('button');
   const saveBtn = document.createElement('button');
   const cancelBtn = document.createElement('button');
+
+  const formFloatingName = document.createElement('div');
+  const formFloatingLastName = document.createElement('div');
+  const formFloatingSurName = document.createElement('div');
+
   const labelName = document.createElement('label');
   const inputName = document.createElement('input');
+
   const labelLastName = document.createElement('label');
   const inputLastName = document.createElement('input');
+
   const labelSurName = document.createElement('label');
   const inputSurName = document.createElement('input');
+
   const labelNameSpan = document.createElement('span');
   const labelLastNameSpan = document.createElement('span');
   const labelSurNameSpan = document.createElement('span');
+
+  const errorBlock = document.createElement('span');
 
   labelNameSpan.textContent = '*';
   labelLastNameSpan.textContent = '*';
@@ -29,13 +39,23 @@ export const createModalForm = () => {
   labelLastName.textContent = 'Фамилия';
   labelSurName.textContent = 'Отчество';
 
+  errorBlock.classList.add('error-block');
+  modalTitle.classList.add('modal-title');
+  formFloatingName.classList.add('form-floating');
+  formFloatingLastName.classList.add('form-floating');
+  formFloatingSurName.classList.add('form-floating');
+
+  inputName.classList.add('modal__input');
+  inputLastName.classList.add('modal__input');
+  inputSurName.classList.add('modal__input');
+
   overlay.classList.add('overlay');
   modalContent.classList.add('modal-content');
   closeBtn.classList.add('btn-reset', 'close-btn');
   saveBtn.classList.add('btn-reset', 'save-btn', 'site-btn');
   addContactBtn.classList.add('btn-reset', 'add-btn');
   saveBtn.classList.add('btn-reset');
-  cancelBtn.classList.add('btn-reset');
+  cancelBtn.classList.add('btn-reset', 'cancel-btn');
   modalContactsBlock.classList.add('contacts-block');
 
   inputName.placeholder = 'Имя';
@@ -52,16 +72,34 @@ export const createModalForm = () => {
   labelSurNameSpan.style.color = '#9873ff';
 
   cancelBtn.type = 'button';
+
   labelName.append(labelNameSpan);
   labelLastName.append(labelLastNameSpan);
   labelSurName.append(labelSurNameSpan);
-  labelName.append(inputName);
-  labelLastName.append(inputLastName);
-  labelSurName.append(inputSurName);
-  modalForm.append(labelName, labelLastName, labelSurName, modalContactsBlock, saveBtn, cancelBtn);
+  formFloatingName.append(inputName, labelName);
+  formFloatingLastName.append(inputLastName, labelLastName);
+  formFloatingSurName.append(inputSurName, labelSurName);
+
+  modalForm.append(
+      formFloatingName,
+      formFloatingLastName,
+      formFloatingSurName,
+      modalContactsBlock,
+      errorBlock,
+      saveBtn,
+      cancelBtn,
+  );
   modalContactsBlock.append(addContactBtn);
   modalContent.append(closeBtn, modalTitle, modalForm);
   overlay.append(modalContent);
+
+  inputName.addEventListener('input', () => {
+    if (!inputName.value.trim()) {
+      errorBlock.textContent = 'Введите имя';
+    } else {
+      errorBlock.textContent = '';
+    }
+  });
 
   document.addEventListener('click', (e) => {
     if (e.target === closeBtn || e.target === overlay || e.target === cancelBtn) {
@@ -97,8 +135,18 @@ export const createModalForm = () => {
         value: contactValues[i].value,
       });
     }
+
+    if (inputSurName.value.trim() === '') {
+      errorBlock.textContent = 'Введите Отчество';
+    }
+    if (inputLastName.value.trim() === '') {
+      errorBlock.textContent = 'Введите Фамилию';
+    }
+    if (inputName.value.trim() === '') {
+      errorBlock.textContent = 'Введите имя';
+    }
     createClient(newContactTr, 'POST');
-    console.log(newContactTr);
+    overlay.remove();
   });
 
   return {
@@ -111,5 +159,6 @@ export const createModalForm = () => {
     addContactBtn,
     saveBtn,
     cancelBtn,
+    errorBlock,
   };
 };
