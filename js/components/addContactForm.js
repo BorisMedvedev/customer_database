@@ -45,6 +45,22 @@ export const addContactForm = () => {
   contactType.append(contactTypeBtn, contactTypeList);
   contact.append(contactType, contactInput, contactDeleteBtn);
 
+  const typeItem = [
+    contactTypeListItemPhone,
+    contactTypeListItemEmail,
+    contactTypeListItemVk,
+    contactTypeListItemOther,
+  ];
+
+  for (const type of typeItem) {
+    type.addEventListener('click', () => {
+      contactTypeBtn.textContent = type.textContent;
+      contactTypeList.classList.remove('active');
+      contactTypeBtn.classList.remove('active');
+    });
+  }
+
+
   contactDeleteBtn.addEventListener('click', () => {
     contact.remove();
     document.querySelector('.add-btn').classList.remove('hidden');

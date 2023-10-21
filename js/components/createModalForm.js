@@ -1,5 +1,6 @@
 import {addContactForm} from './addContactForm.js';
 import {createClient} from './apiClients.js';
+import {createRowTable} from './createRowTable.js';
 
 export const createModalForm = () => {
   const overlay = document.createElement('div');
@@ -30,6 +31,8 @@ export const createModalForm = () => {
   const labelSurNameSpan = document.createElement('span');
 
   const errorBlock = document.createElement('span');
+
+  const app = document.querySelector('tbody');
 
   labelNameSpan.textContent = '*';
   labelLastNameSpan.textContent = '*';
@@ -71,7 +74,12 @@ export const createModalForm = () => {
   labelLastNameSpan.style.color = '#9873ff';
   labelSurNameSpan.style.color = '#9873ff';
 
+  addContactBtn.type = 'button';
   cancelBtn.type = 'button';
+
+  inputName.required = true;
+  inputLastName.required = true;
+  inputSurName.required = true;
 
   labelName.append(labelNameSpan);
   labelLastName.append(labelLastNameSpan);
@@ -93,16 +101,9 @@ export const createModalForm = () => {
   modalContent.append(closeBtn, modalTitle, modalForm);
   overlay.append(modalContent);
 
-  inputName.addEventListener('input', () => {
-    if (!inputName.value.trim()) {
-      errorBlock.textContent = 'Введите имя';
-    } else {
-      errorBlock.textContent = '';
-    }
-  });
 
   document.addEventListener('click', (e) => {
-    if (e.target === closeBtn || e.target === overlay || e.target === cancelBtn) {
+    if (e.target === closeBtn || e.target === cancelBtn) {
       overlay.remove();
     }
   });
@@ -117,7 +118,7 @@ export const createModalForm = () => {
     }
   });
 
-  modalForm.addEventListener('submit', (e) => {
+  modalForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const contactTypes = document.querySelectorAll('.contact__type-btn');
     const contactValues = document.querySelectorAll('.contact__input');
@@ -135,17 +136,8 @@ export const createModalForm = () => {
         value: contactValues[i].value,
       });
     }
-
-    if (inputSurName.value.trim() === '') {
-      errorBlock.textContent = 'Введите Отчество';
-    }
-    if (inputLastName.value.trim() === '') {
-      errorBlock.textContent = 'Введите Фамилию';
-    }
-    if (inputName.value.trim() === '') {
-      errorBlock.textContent = 'Введите имя';
-    }
-    createClient(newContactTr, 'POST');
+    const data = await createClient(newContactTr, 'POST');
+    document.querySelector('tbody').append(createRowTable(data));
     overlay.remove();
   });
 

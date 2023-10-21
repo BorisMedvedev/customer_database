@@ -9,7 +9,6 @@ export const formatDate = (dateString) => {
   return `${formattedDay}.${formattedMonth}.${year}`;
 };
 
-
 export const formatTime = (dateString) => {
   const date = new Date(dateString);
   const hours = date.getHours();

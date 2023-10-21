@@ -1,7 +1,9 @@
+import {getClients} from './components/apiClients.js';
 import {createHeader} from './components/createHeader.js';
 import {createMain} from './components/createMain.js';
 import {createMainTable} from './components/createMainTable.js';
 import {createModalForm} from './components/createModalForm.js';
+import {createRowTable} from './components/createRowTable.js';
 
 const init = async () => {
   const getContainer = document.body;
@@ -9,6 +11,7 @@ const init = async () => {
   const getMainSection = createMain('База данных');
   const getMainTable = createMainTable();
   const addClientBtn = document.createElement('button');
+  const data = await getClients();
 
   addClientBtn.textContent = 'Добавить клиента';
   addClientBtn.className = 'add-client-btn';
@@ -19,6 +22,10 @@ const init = async () => {
   addClientBtn.addEventListener('click', () => {
     const getModalForm = createModalForm();
     getContainer.append(getModalForm.overlay);
+  });
+
+  data.forEach(element => {
+    getMainTable.mainTableTbody.append(createRowTable(element));
   });
 };
 
